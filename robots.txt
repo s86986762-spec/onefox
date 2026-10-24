@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://s86986762-spec.github.io/onefox/sitemap.xml
