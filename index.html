@@ -54,11 +54,7 @@ button{font-family:inherit}
 .btn-primary:hover{background:var(--orange-2);transform:translateY(-1px)}
 .btn-ghost{background:rgba(255,255,255,.04);color:var(--ink);border-color:var(--line2)}
 .btn-ghost:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.3)}
-section{padding:92px 0;scroll-margin-top:80px}
 .center{text-align:center}
-.sh{max-width:640px;margin:0 auto 50px}
-.sh h2{font-size:clamp(28px,3.6vw,42px);font-weight:600;margin:16px 0 14px}
-.sh p{color:var(--dim);font-size:17px;margin:0}
 
 /* ---------- nav ---------- */
 header{position:sticky;top:0;z-index:60;background:rgba(7,8,12,.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
@@ -73,7 +69,7 @@ header{position:sticky;top:0;z-index:60;background:rgba(7,8,12,.72);backdrop-fil
 @media(max-width:880px){.navlinks{display:none}}
 
 /* ---------- hero ---------- */
-.hero{padding:78px 0 40px;position:relative;
+.hero{padding:78px 0 30px;position:relative;
   background:radial-gradient(1000px 540px at 50% -20%, rgba(255,122,61,.16), transparent 62%),
              radial-gradient(760px 460px at 6% 10%, rgba(127,180,255,.08), transparent 60%)}
 .hero::before{content:"";position:absolute;inset:0;pointer-events:none;
@@ -130,53 +126,68 @@ header{position:sticky;top:0;z-index:60;background:rgba(7,8,12,.72);backdrop-fil
 @keyframes sh{to{background-position:-200% 0}}
 @media (prefers-reduced-motion: reduce){.skel .l{animation:none}}
 
-/* ---------- how it works ---------- */
-.how{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+/* ---------- collapsible sections ---------- */
+.stack{max-width:900px;margin:0 auto;padding:34px 24px 10px}
+.stack-hint{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);
+  text-align:center;margin-bottom:20px}
+.acc{background:linear-gradient(180deg,var(--surface2),var(--surface));border:1px solid var(--line);
+  border-radius:var(--rlg);margin-bottom:14px;overflow:hidden;transition:border-color .2s;scroll-margin-top:90px}
+.acc[open]{border-color:var(--line2)}
+.acc>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:18px;padding:22px 26px;transition:.18s}
+.acc>summary::-webkit-details-marker{display:none}
+.acc>summary:hover{background:rgba(255,255,255,.022)}
+.acc>summary .t{flex:1;min-width:0}
+.acc>summary .num{font-family:var(--mono);font-size:12px;color:var(--orange);border:1px solid rgba(255,122,61,.3);
+  background:rgba(255,122,61,.1);width:32px;height:32px;flex:none;border-radius:9px;display:flex;align-items:center;justify-content:center}
+.acc>summary h2{font-size:20px;font-weight:600}
+.acc>summary p{margin:4px 0 0;color:var(--dim);font-size:14.5px}
+.acc .chev{width:34px;height:34px;flex:none;border:1px solid var(--line2);border-radius:10px;display:flex;align-items:center;
+  justify-content:center;color:var(--orange);font-size:20px;line-height:1;transition:transform .25s;font-family:var(--mono)}
+.acc[open] .chev{transform:rotate(45deg)}
+@media (prefers-reduced-motion: reduce){.acc .chev{transition:none}}
+.acc-body{padding:4px 26px 30px}
+@media(max-width:560px){.acc>summary{padding:18px 18px;gap:14px}.acc-body{padding:2px 18px 24px}.acc>summary h2{font-size:18px}}
+
+/* inner grids */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @media(max-width:860px){.steps{grid-template-columns:1fr}}
-.step{background:linear-gradient(180deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:var(--r);
-  padding:26px 24px;position:relative}
+.step{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:var(--r);padding:24px 22px}
 .step .n{font-family:var(--mono);font-size:12.5px;font-weight:500;color:var(--orange);border:1px solid rgba(255,122,61,.3);
-  background:rgba(255,122,61,.1);width:34px;height:34px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:18px}
-.step h3{font-size:18.5px;font-weight:600;margin-bottom:9px}
-.step p{color:var(--dim);font-size:15.2px;margin:0}
-.step .mini{margin-top:16px;padding-top:16px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--faint)}
+  background:rgba(255,122,61,.1);width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.step h3{font-size:17.5px;font-weight:600;margin-bottom:9px}
+.step p{color:var(--dim);font-size:15px;margin:0}
+.step .mini{margin-top:15px;padding-top:15px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--faint)}
 
-/* ---------- features ---------- */
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:760px){.grid2{grid-template-columns:1fr}}
-.card{background:linear-gradient(180deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:var(--r);padding:26px 24px;transition:.2s}
-.card:hover{transform:translateY(-3px);border-color:var(--line2)}
-.card .ic{width:42px;height:42px;border-radius:11px;background:rgba(255,122,61,.12);border:1px solid rgba(255,122,61,.22);
-  display:flex;align-items:center;justify-content:center;margin-bottom:16px}
-.card .ic svg{width:20px;height:20px;stroke:var(--orange);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.card h3{font-size:18.5px;font-weight:600;margin-bottom:8px}
-.card p{color:var(--dim);font-size:15.2px;margin:0}
+.card{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:var(--r);padding:24px 22px}
+.card .ic{width:40px;height:40px;border-radius:11px;background:rgba(255,122,61,.12);border:1px solid rgba(255,122,61,.22);
+  display:flex;align-items:center;justify-content:center;margin-bottom:15px}
+.card .ic svg{width:19px;height:19px;stroke:var(--orange);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:18px;font-weight:600;margin-bottom:8px}
+.card p{color:var(--dim);font-size:15px;margin:0}
 
-/* ---------- pricing ---------- */
-.pricing{background:var(--bg2);border-top:1px solid var(--line)}
-.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:900px){.pgrid{grid-template-columns:1fr}}
-.price{background:linear-gradient(180deg,var(--surface2),var(--surface));border:1px solid var(--line);border-radius:var(--rlg);
-  padding:28px 24px;display:flex;flex-direction:column}
-.price.pop{border-color:rgba(255,122,61,.55);box-shadow:0 34px 70px -42px rgba(255,122,61,.55);position:relative}
-.price.pop::after{content:"Most popular";position:absolute;top:-12px;left:24px;background:var(--orange);color:#0A0B0F;
-  font-family:var(--mono);font-size:11.5px;font-weight:500;padding:4px 11px;border-radius:999px}
-.price h3{font-family:var(--mono);font-size:15px;font-weight:500;color:var(--ink2);margin-bottom:12px;letter-spacing:.02em}
-.price .amt{font-size:38px;font-weight:700;letter-spacing:-.03em}
-.price .amt small{font-size:14px;font-weight:500;color:var(--dim)}
-.price ul{list-style:none;padding:0;margin:20px 0 24px;display:flex;flex-direction:column;gap:11px}
-.price li{display:flex;gap:10px;font-size:14.8px;color:var(--ink2);align-items:flex-start}
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:860px){.pgrid{grid-template-columns:1fr}}
+.price{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:var(--r);padding:26px 22px;display:flex;flex-direction:column}
+.price.pop{border-color:rgba(255,122,61,.55);box-shadow:0 30px 60px -44px rgba(255,122,61,.55);position:relative}
+.price.pop::after{content:"Most popular";position:absolute;top:-11px;left:22px;background:var(--orange);color:#0A0B0F;
+  font-family:var(--mono);font-size:11px;font-weight:500;padding:4px 10px;border-radius:999px}
+.price h3{font-family:var(--mono);font-size:14.5px;font-weight:500;color:var(--ink2);margin-bottom:12px;letter-spacing:.02em}
+.price .amt{font-size:34px;font-weight:700;letter-spacing:-.03em}
+.price .amt small{font-size:13.5px;font-weight:500;color:var(--dim)}
+.price ul{list-style:none;padding:0;margin:18px 0 22px;display:flex;flex-direction:column;gap:10px}
+.price li{display:flex;gap:10px;font-size:14.6px;color:var(--ink2);align-items:flex-start}
 .price li svg{width:16px;height:16px;flex:none;margin-top:4px;stroke:var(--orange);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
 .price .btn{width:100%;margin-top:auto}
 
-/* ---------- band + footer ---------- */
-.band{position:relative;border:1px solid rgba(255,122,61,.4);border-radius:26px;padding:60px 40px;text-align:center;overflow:hidden;
-  background:radial-gradient(700px 320px at 50% -30%, rgba(255,122,61,.22), transparent 70%),linear-gradient(180deg,var(--surface2),var(--surface))}
-.band h2{font-size:clamp(27px,3.6vw,42px);font-weight:700;margin-bottom:14px}
-.band p{color:var(--dim);font-size:17px;max-width:34em;margin:0 auto 28px}
+.band{margin-top:22px;position:relative;border:1px solid rgba(255,122,61,.4);border-radius:var(--rlg);padding:44px 34px;text-align:center;overflow:hidden;
+  background:radial-gradient(600px 260px at 50% -30%, rgba(255,122,61,.22), transparent 70%),rgba(255,255,255,.02)}
+.band h2{font-size:clamp(24px,3.2vw,34px);font-weight:700;margin-bottom:12px}
+.band p{color:var(--dim);font-size:16px;max-width:34em;margin:0 auto 24px}
 .band .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-footer{border-top:1px solid var(--line);padding:52px 0 34px;background:var(--bg2)}
+
+footer{border-top:1px solid var(--line);padding:52px 0 34px;background:var(--bg2);margin-top:60px}
 .fgrid{display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:34px}
 @media(max-width:760px){.fgrid{grid-template-columns:1fr 1fr}}
 footer h4{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin:0 0 14px;font-weight:500}
@@ -207,7 +218,7 @@ footer a:hover{color:var(--orange)}
 <main id="main">
 
 <!-- ============ HERO + SEARCH ENGINE ============ -->
-<section class="hero" style="padding-bottom:56px">
+<section class="hero">
   <div class="wrap">
     <div class="hero-in">
       <span class="eyebrow"><i></i>AI answers + workflow automation</span>
@@ -233,114 +244,111 @@ footer a:hover{color:var(--orange)}
   </div>
 </section>
 
-<!-- ============ HOW IT WORKS ============ -->
-<section class="how" id="how">
-  <div class="wrap">
-    <div class="sh center">
-      <span class="eyebrow">How it works</span>
-      <h2>Three steps. That’s the whole product.</h2>
-      <p>No setup maze, no jargon. Ask, read the answer, automate it.</p>
-    </div>
-    <div class="steps">
-      <div class="step">
-        <div class="n">1</div>
-        <h3>Ask a question</h3>
-        <p>Type in plain English. One Fox searches your documents, your apps and the web — all at once.</p>
-        <div class="mini">→ “What did we promise Acme?”</div>
-      </div>
-      <div class="step">
-        <div class="n">2</div>
-        <h3>Read a cited answer</h3>
-        <p>You get one clear answer with its sources, not ten blue links. Every claim is traceable.</p>
-        <div class="mini">→ Answer + sources you can open</div>
-      </div>
-      <div class="step">
-        <div class="n">3</div>
-        <h3>Turn it into a workflow</h3>
-        <p>One click converts the answer into an automation — a trigger and the actions that follow it.</p>
-        <div class="mini">→ Runs on its own, on schedule or event</div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ============ COLLAPSIBLE SECTIONS ============ -->
+<div class="stack">
+  <div class="stack-hint">Explore One Fox — tap a section to open it</div>
 
-<!-- ============ FEATURES ============ -->
-<section id="features">
-  <div class="wrap">
-    <div class="sh center">
-      <span class="eyebrow">Features</span>
-      <h2>Everything in one workspace.</h2>
-      <p>Search your knowledge like a chat, and wire it into workflows that act.</p>
+  <details class="acc" id="how">
+    <summary>
+      <span class="num">1</span>
+      <span class="t"><h2>How it works</h2><p>Three steps — ask, read, automate. That’s the whole product.</p></span>
+      <span class="chev" aria-hidden="true">+</span>
+    </summary>
+    <div class="acc-body">
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <h3>Ask a question</h3>
+          <p>Type in plain English. One Fox searches your documents, your apps and the web — all at once.</p>
+          <div class="mini">→ “What did we promise Acme?”</div>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <h3>Read a cited answer</h3>
+          <p>You get one clear answer with its sources, not ten blue links. Every claim is traceable.</p>
+          <div class="mini">→ Answer + sources you can open</div>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <h3>Turn it into a workflow</h3>
+          <p>One click converts the answer into an automation — a trigger and the actions that follow it.</p>
+          <div class="mini">→ Runs on its own, on schedule or event</div>
+        </div>
+      </div>
     </div>
-    <div class="grid2">
-      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div><h3>AI answers with citations</h3><p>Direct answers from your own data — every one linked to the source it came from, so you can check it.</p></div>
-      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><path d="M14 17.5h7M17.5 14v7"/></svg></div><h3>Visual workflow builder</h3><p>Drag a trigger and actions onto a canvas, or let an answer build the first draft for you.</p></div>
-      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M9 7H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4"/><path d="M13 3h8v8"/><path d="M21 3l-9 9"/></svg></div><h3>300+ integrations</h3><p>Slack, Gmail, Notion, Sheets, HubSpot, Postgres and more — plus a plain HTTP node for anything else.</p></div>
-      <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>Private by default</h3><p>Bring your own keys and keep your data in your own environment. Nothing is used to train models.</p></div>
-    </div>
-  </div>
-</section>
+  </details>
 
-<!-- ============ PRICING ============ -->
-<section class="pricing" id="pricing">
-  <div class="wrap">
-    <div class="sh center">
-      <span class="eyebrow">Pricing</span>
-      <h2>Simple plans. Cancel anytime.</h2>
-      <p>Start free. Upgrade when your answers and workflows start doing real work.</p>
-    </div>
-    <div class="pgrid">
-      <div class="price">
-        <h3>Starter</h3>
-        <div class="amt">₹1,999<small> /month</small></div>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>1 workspace</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>AI answers on your data</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>5 active workflows</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>1,000 runs / month</li>
-        </ul>
-        <a class="btn btn-ghost" href="#cta">Start free</a>
-      </div>
-      <div class="price pop">
-        <h3>Growth</h3>
-        <div class="amt">₹4,999<small> /month</small></div>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Everything in Starter</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Unlimited workflows</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>50,000 runs / month</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>300+ integrations &amp; priority support</li>
-        </ul>
-        <a class="btn btn-primary" href="#cta">Start free</a>
-      </div>
-      <div class="price">
-        <h3>Scale</h3>
-        <div class="amt">Custom</div>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>SSO &amp; audit logs</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Self-host or your own VPC</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Unlimited runs</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>SLA &amp; dedicated support</li>
-        </ul>
-        <a class="btn btn-ghost" href="#cta">Talk to us</a>
+  <details class="acc" id="features">
+    <summary>
+      <span class="num">2</span>
+      <span class="t"><h2>Features</h2><p>An answer engine and a workflow builder in one workspace.</p></span>
+      <span class="chev" aria-hidden="true">+</span>
+    </summary>
+    <div class="acc-body">
+      <div class="grid2">
+        <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></div><h3>AI answers with citations</h3><p>Direct answers from your own data — every one linked to the source it came from, so you can check it.</p></div>
+        <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><path d="M14 17.5h7M17.5 14v7"/></svg></div><h3>Visual workflow builder</h3><p>Drag a trigger and actions onto a canvas, or let an answer build the first draft for you.</p></div>
+        <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><path d="M9 7H5a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-4"/><path d="M13 3h8v8"/><path d="M21 3l-9 9"/></svg></div><h3>300+ integrations</h3><p>Slack, Gmail, Notion, Sheets, HubSpot, Postgres and more — plus a plain HTTP node for anything else.</p></div>
+        <div class="card"><div class="ic"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div><h3>Private by default</h3><p>Bring your own keys and keep your data in your own environment. Nothing is used to train models.</p></div>
       </div>
     </div>
-    <p class="center" style="color:var(--dim);font-size:14px;margin-top:24px">All plans include a free trial. No card needed to start.</p>
-  </div>
-</section>
+  </details>
 
-<!-- ============ CTA ============ -->
-<section id="cta">
-  <div class="wrap">
-    <div class="band">
-      <h2>Ask your first question.</h2>
-      <p>It takes ten seconds to see how it works — and one click to turn the answer into an automation.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="#main">Try it above</a>
-        <a class="btn btn-ghost" href="mailto:hello@onefox.ai">Talk to us</a>
+  <details class="acc" id="pricing">
+    <summary>
+      <span class="num">3</span>
+      <span class="t"><h2>Pricing</h2><p>Simple plans, cancel anytime. Start free — no card needed.</p></span>
+      <span class="chev" aria-hidden="true">+</span>
+    </summary>
+    <div class="acc-body">
+      <div class="pgrid">
+        <div class="price">
+          <h3>Starter</h3>
+          <div class="amt">₹1,999<small> /month</small></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>1 workspace</li>
+            <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>AI answers on your data</li>
+            <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>5 active workflows</li>
+            <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>1,000 runs / month</li>
+          </ul>
+          <a class="btn btn-ghost" href="#cta">Start free</a>
+        </div>
+        <div class="price pop">
+          <h3>Growth</h3>
+          <div class="amt">₹4,999<small> /month</small></div>
+          <ul>
+            <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Everything in Starter</li>
+            <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Unlimited workflows</li>
+            <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>50,000 runs / month</li>
+            <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>300+ integrations &amp; priority support</li>
+          </ul>
+          <a class="btn btn-primary" href="#cta">Start free</a>
+        </div>
+        <div class="price">
+          <h3>Scale</h3>
+          <div class="amt">Custom</div>
+          <ul>
+            <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>SSO &amp; audit logs</li>
+            <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Self-host or your own VPC</li>
+            <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Unlimited runs</li>
+            <li><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg>SLA &amp; dedicated support</li>
+          </ul>
+          <a class="btn btn-ghost" href="#cta">Talk to us</a>
+        </div>
+      </div>
+
+      <div class="band" id="cta">
+        <h2>Ask your first question.</h2>
+        <p>It takes ten seconds to see how it works — and one click to turn the answer into an automation.</p>
+        <div class="cta">
+          <a class="btn btn-primary" href="#main">Try it above</a>
+          <a class="btn btn-ghost" href="mailto:hello@onefox.ai">Talk to us</a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </details>
+</div>
+
 </main>
 
 <footer>
@@ -375,6 +383,16 @@ footer a:hover{color:var(--orange)}
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
 
+/* ---- open the right collapsible section when a link points to it ---- */
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click', function(){
+    var id = a.getAttribute('href');
+    if(id.length < 2) return;
+    var el = document.querySelector(id);
+    if(el && el.tagName === 'DETAILS'){ el.open = true; }
+  });
+});
+
 /* ==================================================================
    BACKEND HOOK  —  wire your API here when it is ready.
 
@@ -395,28 +413,24 @@ const API_ENDPOINT = "";
 const DEMO = [
   {
     match: ["acme", "promise", "deal"],
-    q: "What did we promise the Acme deal?",
     answer: "We promised Acme <b>three seats on the Growth plan</b>, onboarding completed <b>by Friday</b>, and a <b>12-month price lock</b>. The deal is owned by <b>Priya</b>, and the next step is sending the signed SOW today.",
     sources: [{title:"acme-notes.md"},{title:"#sales channel"},{title:"deal-log"}],
     followups: ["When does the Acme price lock expire?","Draft the SOW follow-up email","Set a reminder for the Friday onboarding"]
   },
   {
     match: ["invoice", "overdue", "unpaid", "payment"],
-    q: "Which invoices are overdue?",
     answer: "Three invoices are past due: <b>#1042 (₹48,000)</b> at 14 days, <b>#1051 (₹12,500)</b> at 6 days, and <b>#1063 (₹96,000)</b> at 2 days. Together that is <b>₹1,56,500</b> outstanding. #1042 is the oldest and worth chasing first.",
     sources: [{title:"invoices table"},{title:"Stripe"},{title:"#accounts"}],
     followups: ["Send a reminder for invoice #1042","Who is the contact for #1063?","Show last month’s collections"]
   },
   {
     match: ["support", "ticket", "summarise", "summarize", "week"],
-    q: "Summarise this week’s support tickets",
     answer: "This week you received <b>42 tickets</b>. The two biggest themes were <b>billing questions (11)</b> and <b>login issues (9)</b>. Median first response was <b>under 5 minutes</b>, and <b>6 tickets</b> are still open, all waiting on the customer.",
     sources: [{title:"helpdesk export"},{title:"#support"}],
     followups: ["Draft a reply for the open billing tickets","Which tickets breached SLA?","Create a weekly summary workflow"]
   },
   {
     match: ["onboarding", "owner", "own"],
-    q: "Who owns onboarding?",
     answer: "<b>Priya</b> owns customer onboarding. <b>Rahul</b> covers technical setup, and escalations go to <b>Meera</b>. New accounts are handed to Priya automatically once a deal is marked closed-won.",
     sources: [{title:"team-roles.md"},{title:"Notion · Ops"}],
     followups: ["Show the onboarding checklist","Who backs up Priya when she is away?","Automate the handoff to Priya"]
@@ -433,8 +447,8 @@ function skeleton(){
 }
 
 function render(data, query){
-  const srcs = (data.sources||[]).map(s => '<span>'+escapeHtml(s.title||s)+'</span>').join('');
-  const fups = (data.followups||[]).map(f => '<button type="button" data-follow="'+escapeAttr(f)+'">'+escapeHtml(f)+'</button>').join('');
+  const srcs = (data.sources||[]).map(function(s){ return '<span>'+escapeHtml(s.title||s)+'</span>'; }).join('');
+  const fups = (data.followups||[]).map(function(f){ return '<button type="button" data-follow="'+escapeAttr(f)+'">'+escapeHtml(f)+'</button>'; }).join('');
   answerEl.className = 'answer show';
   answerEl.innerHTML =
     '<div class="apanel">'+
@@ -459,7 +473,7 @@ function render(data, query){
   });
   const cp = document.getElementById('copyBtn');
   if(cp) cp.addEventListener('click', function(){
-    navigator.clipboard && navigator.clipboard.writeText(answerEl.querySelector('.abody p').textContent);
+    if(navigator.clipboard) navigator.clipboard.writeText(answerEl.querySelector('.abody p').textContent);
     this.textContent = 'Copied ✓';
   });
   answerEl.querySelectorAll('[data-follow]').forEach(function(b){
@@ -469,7 +483,7 @@ function render(data, query){
 
 function demo(query){
   const s = query.toLowerCase();
-  let hit = DEMO.find(d => d.match.some(m => s.includes(m)));
+  let hit = DEMO.find(function(d){ return d.match.some(function(m){ return s.indexOf(m) !== -1; }); });
   if(!hit){
     hit = {
       answer: "Here is what I found for <b>“"+escapeHtml(query)+"”</b>. In the live product this answer is generated from your own connected sources and returns its citations. This is the demo shell — connect your backend to make it real.",
@@ -497,10 +511,7 @@ async function ask(query){
       data = demo(query);
     }
   }catch(err){
-    data = {
-      answer: "Sorry — I couldn’t reach the server just now. Please try again, or email <b>hello@onefox.ai</b>.",
-      sources: [], followups: []
-    };
+    data = { answer: "Sorry — I couldn’t reach the server just now. Please try again, or email <b>hello@onefox.ai</b>.", sources: [], followups: [] };
   }
   const wait = Math.max(0, 520 - (Date.now()-t0));
   setTimeout(function(){ render(data, query); }, wait);
@@ -514,7 +525,7 @@ function run(query){
   answerEl.scrollIntoView({behavior:'smooth', block:'nearest'});
 }
 
-function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, function(c){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c]; }); }
 function escapeAttr(s){ return escapeHtml(s); }
 
 form.addEventListener('submit', function(e){ e.preventDefault(); run(input.value); });
